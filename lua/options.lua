@@ -1,3 +1,6 @@
+-- disable text wrapping
+vim.o.wrap = false
+
 -- highlight on search
 vim.o.hlsearch = false
 
