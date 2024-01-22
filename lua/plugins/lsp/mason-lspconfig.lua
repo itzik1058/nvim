@@ -5,7 +5,8 @@ return {
     ensure_installed = {
       "lua_ls",
       "tsserver",
-      "pyright"
+      "pyright",
+      "ruff_lsp",
     },
-  }
+  },
 }
