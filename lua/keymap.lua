@@ -43,6 +43,7 @@ vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- file
 vim.keymap.set("n", "<leader>w", "<cmd> w <CR>", { desc = "Write buffer" })
+vim.keymap.set("n", "<leader>bd", "<Esc>:bprevious<bar>bdelete #<Return>", { desc = "Delete buffer" })
 
 -- diagnostics
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
