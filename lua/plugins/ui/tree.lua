@@ -1,5 +1,5 @@
-local WIDTH_RATIO = 0.5
-local HEIGHT_RATIO = 0.8
+WIDTH_RATIO = 0.7
+HEIGHT_RATIO = 0.8
 
 local open_win_config = function()
   local screen_w = vim.opt.columns:get()
@@ -42,11 +42,27 @@ return {
         return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
       end,
     },
+    renderer = {
+      icons = {
+        git_placement = "signcolumn",
+
+        glyphs = {
+          git = {
+            unstaged = "U",
+            staged = "S",
+            unmerged = "UM",
+            renamed = "R",
+            deleted = "D",
+            untracked = "UT",
+            ignored = "I",
+          },
+        },
+      },
+    },
   },
   config = function(_, opts)
     local nvim_tree = require "nvim-tree"
     nvim_tree.setup(opts)
-    vim.keymap.set("n", "<C-n>", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
-    vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeFocus <CR>", { desc = "Focus nvimtree" })
+    vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
   end,
 }
