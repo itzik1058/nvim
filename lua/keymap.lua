@@ -17,7 +17,7 @@ vim.keymap.set({ "n", "x", "o" }, "H", "^", { desc = "Beginning of line" })
 vim.keymap.set({ "n", "x", "o" }, "L", "$", { desc = "End of line" })
 
 -- clear highlights
-vim.keymap.set("n", "<Esc>", ":noh <CR>", { desc = "Clear highlights" })
+vim.keymap.set("n", "<Esc>", ":noh<CR>", { desc = "Clear highlights" })
 
 -- indent
 vim.keymap.set("v", "<", "<gv", { desc = "Outdent line" })
@@ -42,8 +42,9 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent line" })
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
 -- file
-vim.keymap.set("n", "<leader>w", "<cmd> w <CR>", { desc = "Write buffer" })
-vim.keymap.set("n", "<leader>bd", "<Esc>:bprevious<bar>bdelete #<Return>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Write buffer" })
+vim.keymap.set("n", "<leader>bd", ":bp|bd#<CR>", { desc = "Delete buffer" })
+vim.keymap.set("n", "<leader>bD", ":%bd|e#|bd#<CR>", { desc = "Delete all buffers except this" })
 
 -- diagnostics
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
