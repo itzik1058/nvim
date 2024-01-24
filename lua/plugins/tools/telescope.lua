@@ -16,16 +16,7 @@ return {
       end,
     },
   },
-  opts = {
-    defaults = {
-      mappings = {
-        i = {
-          ["<C-u>"] = false,
-          ["<C-d>"] = false,
-        },
-      },
-    },
-  },
+  opts = {},
   config = function(_, opts)
     require("telescope").setup(opts)
 
