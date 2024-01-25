@@ -1,24 +1,5 @@
-local function parse_venv(variable)
-  local venv = os.getenv(variable)
-  if venv ~= nil and string.find(venv, "/") then
-    local orig_venv = venv
-    for w in orig_venv:gmatch "([^/]+)" do
-      venv = w
-    end
-    venv = string.format("%s", venv)
-  end
-  return venv
-end
-
-local venv_plugin = {
-  function()
-    local venv = parse_venv "CONDA_DEFAULT_ENV" or parse_venv "VIRTUAL_ENV" or "NO ENV"
-    return " " .. venv
-  end,
-  cond = function()
-    return vim.bo.filetype == "python"
-  end,
-}
+local venv = require "plugins.ui.lualine.venv"
+local lint = require "plugins.ui.lualine.lint"
 
 return {
   -- Set lualine as statusline
@@ -52,8 +33,14 @@ return {
       lualine_c = {
         "filename",
         -- "lsp_progress",
+        lint,
       },
-      lualine_x = { "encoding", "fileformat", "filetype", venv_plugin },
+      lualine_x = {
+        "encoding",
+        "fileformat",
+        "filetype",
+        venv,
+      },
       lualine_y = { "progress" },
       lualine_z = { "location" },
     },
