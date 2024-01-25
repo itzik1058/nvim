@@ -16,7 +16,14 @@ return {
       end,
     },
   },
-  opts = {},
+  opts = {
+    pickers = {
+      find_files = {
+        hidden = true,
+        file_ignore_patterns = { ".git" },
+      },
+    },
+  },
   config = function(_, opts)
     require("telescope").setup(opts)
 
