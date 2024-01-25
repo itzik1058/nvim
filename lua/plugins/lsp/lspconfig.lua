@@ -9,7 +9,7 @@ local on_attach = function(client, buffer)
   vim.keymap.set("n", "gr", ts.lsp_references, { buffer = buffer, desc = "LSP: Goto References" })
   vim.keymap.set("n", "gI", ts.lsp_implementations, { buffer = buffer, desc = "LSP: Goto Implementation" })
   vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = buffer, desc = "LSP: Type Definition" })
-  vim.keymap.set("n", "<leader>ds", ts.lsp_document_symbols, { buffer = buffer, desc = "LSP: Document Symbols" })
+  vim.keymap.set("n", "<leader>ls", ts.lsp_document_symbols, { buffer = buffer, desc = "LSP: Document Symbols" })
   vim.keymap.set(
     "n",
     "<leader>ws",
@@ -55,6 +55,12 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
+    local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
+    for type, icon in pairs(signs) do
+      local hl = "DiagnosticSign" .. type
+      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
+
     local lspconfig = require "lspconfig"
 
     lspconfig.lua_ls.setup {
