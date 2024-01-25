@@ -1,4 +1,4 @@
-local on_attach = function(client, buffer)
+local function on_attach(client, buffer)
   local ts = require "telescope.builtin"
 
   vim.keymap.set({ "n", "x" }, "<leader>cf", vim.lsp.buf.format, { buffer = buffer, desc = "LSP: Format buffer" })
