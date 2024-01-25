@@ -1,7 +1,7 @@
 WIDTH_RATIO = 0.7
 HEIGHT_RATIO = 0.8
 
-local open_win_config = function()
+local function open_win_config()
   local screen_w = vim.opt.columns:get()
   local screen_h = vim.opt.lines:get() - vim.opt.cmdheight:get()
   local window_w = screen_w * WIDTH_RATIO
@@ -20,6 +20,21 @@ local open_win_config = function()
   }
 end
 
+local function on_attach(bufnr)
+  local api = require "nvim-tree.api"
+
+  api.config.mappings.default_on_attach(bufnr)
+
+  local function opts(desc)
+    return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  vim.keymap.set("n", "<leader>r", function()
+    api.tree.change_root_to_node(api.tree.get_node_under_cursor())
+  end, opts "Change root")
+  vim.keymap.set("n", "<esc>", api.tree.close, opts "Close")
+end
+
 return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
@@ -28,6 +43,7 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   opts = {
+    on_attach = on_attach,
     disable_netrw = true,
     hijack_netrw = true,
     sync_root_with_cwd = true,
@@ -63,6 +79,7 @@ return {
   config = function(_, opts)
     local nvim_tree = require "nvim-tree"
     nvim_tree.setup(opts)
+
     vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
   end,
 }
