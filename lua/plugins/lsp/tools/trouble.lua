@@ -1,5 +1,6 @@
 return {
   "folke/trouble.nvim",
+  main = "trouble",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   opts = {
     action_keys = {
@@ -25,9 +26,10 @@ return {
       help = "?", -- help menu
     },
   },
-  config = function(_, opts)
-    local trouble = require "trouble"
+  config = function(plugin, opts)
+    local trouble = require(plugin.main)
     trouble.setup(opts)
+
     vim.keymap.set("n", "<leader>qq", trouble.open)
     vim.keymap.set("n", "gR", function()
       trouble.open "lsp_references"

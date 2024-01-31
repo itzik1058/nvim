@@ -39,6 +39,7 @@ return {
   "nvim-tree/nvim-tree.lua",
   version = "*",
   lazy = false,
+  main = "nvim-tree",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
@@ -80,8 +81,8 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    local nvim_tree = require "nvim-tree"
+  config = function(plugin, opts)
+    local nvim_tree = require(plugin.main)
     nvim_tree.setup(opts)
 
     vim.keymap.set("n", "<leader>e", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })

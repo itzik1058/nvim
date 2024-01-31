@@ -1,5 +1,6 @@
 return {
   "linux-cultist/venv-selector.nvim",
+  main = "venv-selector",
   dependencies = {
     "neovim/nvim-lspconfig",
     "nvim-telescope/telescope.nvim",
@@ -11,8 +12,8 @@ return {
     parents = 0,
     name = { "venv", ".venv" },
   },
-  config = function(_, opts)
-    local vs = require "venv-selector"
+  config = function(plugin, opts)
+    local vs = require(plugin.main)
     vs.setup(opts)
 
     vim.api.nvim_create_autocmd("VimEnter", {

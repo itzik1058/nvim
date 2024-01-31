@@ -1,12 +1,15 @@
 return {
   "mfussenegger/nvim-dap-python",
+  main = "dap-python",
   dependencies = {
     "mfussenegger/nvim-dap",
   },
-  config = function()
-    require("dap-python").setup "python"
+  config = function(plugin, _)
+    require(plugin.main).setup "python"
 
-    table.insert(require("dap").configurations.python, {
+    local dap = require "dap"
+
+    table.insert(dap.configurations.python, {
       type = "python",
       request = "launch",
       name = "Module",

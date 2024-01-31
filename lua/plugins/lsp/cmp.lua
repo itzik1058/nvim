@@ -1,6 +1,7 @@
 return {
   -- Autocompletion
   "hrsh7th/nvim-cmp",
+  main = "cmp",
   dependencies = {
     -- Snippet Engine & its associated nvim-cmp source
     "L3MON4D3/LuaSnip",
@@ -18,8 +19,8 @@ return {
     -- Autopairs
     "windwp/nvim-autopairs",
   },
-  config = function()
-    local cmp = require "cmp"
+  config = function(plugin, _)
+    local cmp = require(plugin.main)
     local luasnip = require "luasnip"
 
     require("luasnip.loaders.from_vscode").lazy_load()

@@ -1,6 +1,7 @@
 return {
   "akinsho/bufferline.nvim",
   enabled = false,
+  main = "bufferline",
   dependencies = "nvim-tree/nvim-web-devicons",
   opts = {
     options = {
@@ -15,8 +16,8 @@ return {
       },
     },
   },
-  config = function(_, opts)
-    require("bufferline").setup(opts)
+  config = function(plugin, opts)
+    require(plugin.main).setup(opts)
 
     vim.keymap.set("n", "<tab>", "<cmd> BufferLineCycleNext <CR>", { desc = "Next buffer" })
     vim.keymap.set("n", "<S-tab>", "<cmd> BufferLineCyclePrev <CR>", { desc = "Previous buffer" })

@@ -1,7 +1,8 @@
 return {
   "mfussenegger/nvim-lint",
-  config = function()
-    local lint = require "lint"
+  main = "lint",
+  config = function(plugin, _)
+    local lint = require(plugin.main)
     lint.linters_by_ft = {
       python = { "mypy" },
     }

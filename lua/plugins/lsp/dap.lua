@@ -1,9 +1,10 @@
 return {
   "mfussenegger/nvim-dap",
+  main = "dap",
   dependencies = {
     -- { "Weissle/persistent-breakpoints.nvim" },
   },
-  config = function()
+  config = function(plugin, _)
     local signs = {
       Breakpoint = "",
       BreakpointCondition = "ﳁ",
@@ -25,7 +26,7 @@ return {
     --   load_breakpoints_event = { "BufReadPost" },
     -- }
 
-    local dap = require "dap"
+    local dap = require(plugin.main)
     -- local pbapi = require "persistent-breakpoints.api"
 
     vim.keymap.set("n", "<leader>dn", dap.continue, { desc = "Continue" })

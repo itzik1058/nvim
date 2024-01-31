@@ -1,11 +1,12 @@
 return {
   "akinsho/git-conflict.nvim",
   version = "*",
+  main = "git-conflict",
   opts = {
     default_mappings = false,
   },
-  config = function(_, opts)
-    require("git-conflict").setup(opts)
+  config = function(plugin, opts)
+    require(plugin.main).setup(opts)
     vim.keymap.set("n", "<leader>gco", "<cmd> GitConflictChooseOurs <CR>", { desc = "Conflict choose ours" })
     vim.keymap.set("n", "<leader>gct", "<cmd> GitConflictChooseTheirs <CR>", { desc = "Conflict choose theirs" })
     vim.keymap.set("n", "<leader>gcb", "<cmd> GitConflictChooseBoth <CR>", { desc = "Conflict choose both" })

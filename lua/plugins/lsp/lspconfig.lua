@@ -49,19 +49,20 @@ end
 
 return {
   "neovim/nvim-lspconfig",
+  main = "lspconfig",
   dependencies = {
     "williamboman/mason-lspconfig.nvim",
     { "j-hui/fidget.nvim", tag = "legacy", opts = {} },
     { "folke/neodev.nvim", opts = {} },
   },
-  config = function()
+  config = function(plugin, _)
     local signs = { Error = "󰅚 ", Warn = "󰀪 ", Hint = "󰌶 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
-    local lspconfig = require "lspconfig"
+    local lspconfig = require(plugin.main)
 
     lspconfig.lua_ls.setup {
       on_attach = on_attach,
